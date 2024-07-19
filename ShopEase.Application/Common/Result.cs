@@ -38,8 +38,8 @@ public class Result<T> : Result
         return new Result<T>(true, data, string.Empty);
     }
 
-    public static Result<T?> FailureResult(T data, string errorMessage)
+    public new static Result<T> FailureResult(string errorMessage)
     {
-        return new Result<T?>(false, data, errorMessage);
+        return new Result<T>(false, default(T?), errorMessage);
     }
 }
