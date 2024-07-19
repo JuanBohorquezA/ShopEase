@@ -17,7 +17,5 @@ public interface IGenericRepository<TEntity>
 
     public void Delete(TEntity entity, CancellationToken cancellationToken = default);
 
-    public Task Delete(Guid id, CancellationToken cancellationToken = default);
-
     public void Update(TEntity entity, CancellationToken cancellationToken = default);
 }

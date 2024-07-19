@@ -19,12 +19,6 @@ internal class GenericRepository<TEntity>(DataBaseContext context) : IGenericRep
         _dbSet.Remove(entity);
     }
 
-    public async Task Delete(Guid id, CancellationToken cancellationToken = default)
-    {
-        var entityToDelete = await _dbSet.FindAsync(id);
-        Delete(entityToDelete!);
-    }
-
     public virtual async Task<IEnumerable<TEntity>> GetAsync(
         Expression<Func<TEntity, bool>>? filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable
