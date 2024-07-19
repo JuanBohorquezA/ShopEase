@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShopEase.Application.Features.Products.Commands.CreateProduct;
 using ShopEase.Application.Features.Products.Commands.DeleteProduct;
 using ShopEase.Application.Features.Products.Commands.UpdateProduct;
+using ShopEase.Application.Features.Products.Queries.GetAllProduct;
 using ShopEase.Application.Features.Products.Queries.GetProductById;
 using ShopEase.WebApi.Controllers.Base;
 
@@ -16,10 +17,19 @@ public class ProductsController : ApiController
 
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetProductById(GetProductByIdQuery query, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetProductById(Guid id, CancellationToken cancellationToken)
     {
+        var query = new GetProductByIdQuery(id);
         var result = await Sender.Send(query, cancellationToken);
-        return Ok(result);
+        return result.Success? Ok(result) : NotFound(result.ErrorMessage);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllProducts()
+    {
+        var query = new GetAllProductQuery();
+        var result = await Sender.Send(query);
+        return Ok(result.Data);
     }
 
     [HttpPost]
@@ -37,8 +47,9 @@ public class ProductsController : ApiController
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> RemoveProduct([FromBody] DeleteProductCommand command, CancellationToken cancellationToken)
+    public async Task<IActionResult> RemoveProduct(Guid id, CancellationToken cancellationToken)
     {
+        var command = new DeleteProductCommand(id);
         var result = await Sender.Send(command, cancellationToken);
         return result.Success ? NoContent() : NotFound(result.ErrorMessage);
     }
