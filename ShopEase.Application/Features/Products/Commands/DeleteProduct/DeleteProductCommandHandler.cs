@@ -11,11 +11,11 @@ public class DeleteProductCommandHandler : ICommandHandler<DeleteProductCommand>
     {
         _unitOfWork = unitOfWork;
     }
-    public async Task<Result> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
     {
-        var product = await _unitOfWork.ProductRepository.GetByIdAsync(request.productId, cancellationToken);
-        if (product == null)
-            return Result.FailureResult($"Product id {request.productId} does not exist.");
+        var product = await _unitOfWork.ProductRepository.GetByIdAsync(command.productId, cancellationToken);
+        if (product is null)
+            return Result.FailureResult($"productId {command.productId} does not exist.");
 
         _unitOfWork.ProductRepository.Delete(product, cancellationToken);
         await _unitOfWork.SaveAsync(cancellationToken);

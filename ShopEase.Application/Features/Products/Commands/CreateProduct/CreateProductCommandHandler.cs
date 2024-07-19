@@ -24,10 +24,10 @@ public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
         var product = new Product
         {
             Id = Guid.NewGuid(),
-            Name = command.name,
+            Name = command.Name,
             Description = command.Description,
-            Quantity = command.quantity,
-            Price = command.price,
+            Quantity = command.Quantity,
+            Price = command.Price,
             CategoryId = category.Id,
         };
 

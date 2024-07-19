@@ -6,7 +6,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
 {
     public CreateProductCommandValidator()
     {
-        RuleFor(p=>p.name)
+        RuleFor(p=>p.Name)
             .NotNull().WithMessage("Name cannot be null.")
             .NotEmpty().WithMessage("Name is required.")
             .MaximumLength(100).WithMessage("Name must not exceed 100 characters.");
@@ -16,13 +16,13 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .NotEmpty().WithMessage("Description is required.")
             .MaximumLength(500).WithMessage("Description must not exceed 500 characters.");
 
-        RuleFor(p=>p.quantity)
-            .NotNull().WithMessage("quantity cannot be null.")
-             .Must(quantity => quantity > 0).WithMessage("quantity value is not valid.");
+        RuleFor(p=>p.Quantity)
+            .NotNull().WithMessage("Quantity cannot be null.")
+             .Must(quantity => quantity > 0).WithMessage("Quantity value is not valid.");
 
-        RuleFor(p => p.price)
-            .NotNull().WithMessage("price cannot be null.")
-            .Must(price => price > 0).WithMessage("price value is not valid.");
+        RuleFor(p => p.Price)
+            .NotNull().WithMessage("Price cannot be null.")
+            .Must(price => price > 0).WithMessage("Price value is not valid.");
 
         RuleFor(p => p.CategoryId)
             .NotNull().WithMessage("CategoryId cannot be null.")
