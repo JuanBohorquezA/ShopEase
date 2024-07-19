@@ -9,5 +9,16 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
   </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ShopEase.Application\ShopEase.Application.csproj" />
+	</ItemGroup>
 
 </Project>

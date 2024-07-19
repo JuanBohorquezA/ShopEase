@@ -1,5 +1,8 @@
 ﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ShopEase.Application.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +17,19 @@ public static class DependencyInjection
     {
         var assembly = typeof(DependencyInjection).Assembly;
 
+        var configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .Build();
+
+        services.AddSingleton<IConfiguration>(configuration);
+
         services.AddMediatR(configuration =>
             configuration.RegisterServicesFromAssembly(assembly));
 
         services.AddValidatorsFromAssembly(assembly);
 
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         return services;
     }
 }
