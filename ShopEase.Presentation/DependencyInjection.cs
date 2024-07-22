@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ShopEase.Presentation.Abstractions;
+using ShopEase.Presentation.Configuration.CORS;
+using ShopEase.Presentation.Configuration.Swagger;
 
 namespace ShopEase.Persistence;
 

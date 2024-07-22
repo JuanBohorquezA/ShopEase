@@ -16,10 +16,16 @@ public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdQuery, Pro
 
     public async Task<Result<ProductResponse>> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
     {
-        var product = await _unitOfWork.ProductRepository.GetByIdAsync(query.productId);
+        var product = await _unitOfWork.ProductRepository.GetByIdAsync(query.productId, cancellationToken);
         if (product is null)
             return Result<ProductResponse>.FailureResult($"productId {query.productId} does not exist.");
-        var productResult = new ProductResponse(product.Id, product.Name, product.Description, product.Quantity, product.Price, product.CategoryId);
+        var productResult = new ProductResponse(
+            product.Id,
+            product.Name,
+            product.Description,
+            product.Quantity,
+            product.Price,
+            product.CategoryId);
         
         return Result<ProductResponse>.SuccessResult(productResult);
     }

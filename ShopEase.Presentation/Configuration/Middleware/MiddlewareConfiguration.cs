@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using ShopEase.Presentation.Middlewares;
 
-namespace ShopEase.Presentation.Abstractions;
+namespace ShopEase.Presentation.Configuration.Middleware;
 
 public static class MiddlewareConfiguration
 {

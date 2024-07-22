@@ -2,4 +2,4 @@
 
 namespace ShopEase.Application.Features.Products.Commands.CreateProduct;
 
-public sealed record CreateProductCommand(string Name, string Description, int Quantity, decimal Price, Guid CategoryId) : ICommand;
+public sealed record CreateProductCommand(string Name, string Description, int Quantity, decimal Price, Guid CategoryId) : ICommand<Guid>;

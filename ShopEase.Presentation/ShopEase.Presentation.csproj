@@ -21,4 +21,8 @@
 	  <ProjectReference Include="..\ShopEase.Application\ShopEase.Application.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Abstractions\" />
+	</ItemGroup>
+
 </Project>

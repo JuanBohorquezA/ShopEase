@@ -7,8 +7,8 @@ internal class GetProductByIdQueryValidator : AbstractValidator<GetProductByIdQu
     public GetProductByIdQueryValidator()
     {
         RuleFor(p => p.productId)
-           .NotNull().WithMessage("productId cannot be null.")
-           .NotEmpty().WithMessage("productId is required.")
-           .Must(id => id != Guid.Empty).WithMessage("productId must be a valid GUID.");
+            .NotNull().WithMessage("productId cannot be null.")
+            .NotEmpty().WithMessage("productId is required.")
+            .Must(id => id != Guid.Empty).WithMessage("productId must be a valid GUID.");
     }
 }

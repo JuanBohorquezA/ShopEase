@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace ShopEase.Presentation.Abstractions;
+namespace ShopEase.Presentation.Configuration.Swagger;
 
 public static class SwaggerConfiguration
 {

@@ -10,9 +10,9 @@ using ShopEase.WebApi.Controllers.Base;
 namespace ShopEase.Presentation.Controllers;
 
 [Route("api/products")]
-public class ProductsController : ApiController
+public class ProductController : ApiController
 {
-    public ProductsController(ISender sender)
+    public ProductController(ISender sender)
         : base(sender) { }
 
 
@@ -21,7 +21,7 @@ public class ProductsController : ApiController
     {
         var query = new GetProductByIdQuery(id);
         var result = await Sender.Send(query, cancellationToken);
-        return result.Success? Ok(result) : NotFound(result.ErrorMessage);
+        return result.Success? Ok(result.Data) : NotFound(result.ErrorMessage);
     }
 
     [HttpGet]
@@ -36,14 +36,20 @@ public class ProductsController : ApiController
     public async Task<IActionResult> RegisterProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
     {
         var result = await Sender.Send(command, cancellationToken);
-        return result.Success? Created() : NotFound(result.ErrorMessage);
+        if (!result.Success)
+            return NotFound(result.ErrorMessage);
+
+        return await HandleGetDTO(result.Data, cancellationToken);
     }
 
     [HttpPut]
     public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command, CancellationToken cancellationToken)
     {
         var result = await Sender.Send(command, cancellationToken);
-        return result.Success ? Ok() : NotFound(result.ErrorMessage);
+        if (!result.Success) 
+            return NotFound(result.ErrorMessage);
+
+        return await HandleGetDTO(result.Data, cancellationToken);
     }
 
     [HttpDelete("{id}")]
@@ -53,5 +59,18 @@ public class ProductsController : ApiController
         var result = await Sender.Send(command, cancellationToken);
         return result.Success ? NoContent() : NotFound(result.ErrorMessage);
     }
+
+    #region private methods
+    private async Task<IActionResult> HandleGetDTO(Guid id, CancellationToken cancellationToken)
+    {
+        var queryGetById = new GetProductByIdQuery(id);
+        var productResult = await Sender.Send(queryGetById, cancellationToken);
+
+        return productResult.Success ?
+            Ok(productResult.Data) :
+            NotFound(productResult.ErrorMessage);
+    }
+    #endregion
+
 
 }

@@ -23,8 +23,7 @@ public class GetAllProductQueryHandler : IQueryHandler<GetAllProductQuery, IEnum
             product.Description,
             product.Quantity,
             product.Price,
-            product.CategoryId
-        ));
+            product.CategoryId));
 
         return Result<IEnumerable<ProductResponse>>.SuccessResult(productsResponse);
     }

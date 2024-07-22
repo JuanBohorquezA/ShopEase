@@ -5,7 +5,7 @@ using ShopEase.Domain.Entities.Main;
 
 namespace ShopEase.Application.Features.Products.Commands.CreateProduct;
 
-public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
+public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, Guid>
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -14,12 +14,12 @@ public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Result> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
         var category = await _unitOfWork.CategoryRepository.GetByIdAsync(command.CategoryId, cancellationToken);
 
         if (category is null)
-            return Result.FailureResult($"Category id {command.CategoryId} does not exist.");
+            return Result<Guid>.FailureResult($"Category id {command.CategoryId} does not exist.");
 
         var product = new Product
         {
@@ -31,10 +31,10 @@ public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
             CategoryId = category.Id,
         };
 
-        await _unitOfWork.ProductRepository.InsertAsync(product);
+        await _unitOfWork.ProductRepository.InsertAsync(product, cancellationToken);
         await _unitOfWork.SaveAsync(cancellationToken);
 
-        return Result.SuccessResult();
+        return Result<Guid>.SuccessResult(product.Id);
 
     }
 

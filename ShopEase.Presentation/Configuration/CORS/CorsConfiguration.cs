@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ShopEase.Application.Common;
 
-namespace ShopEase.Presentation.Abstractions;
+namespace ShopEase.Presentation.Configuration.CORS;
 
 public static class CorsConfiguration
 {

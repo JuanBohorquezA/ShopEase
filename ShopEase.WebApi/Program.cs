@@ -1,7 +1,8 @@
 using ShopEase.Application;
 using ShopEase.Infrastructure;
 using ShopEase.Persistence;
-using ShopEase.Presentation.Abstractions;
+using ShopEase.Presentation.Configuration.CORS;
+using ShopEase.Presentation.Configuration.Middleware;
 
 
 var builder = WebApplication.CreateBuilder(args);
