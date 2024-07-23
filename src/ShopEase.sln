@@ -3,21 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{68888035-9FD5-4473-A8A1-92EAA7919B4E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopEase.Application", "ShopEase.Application\ShopEase.Application.csproj", "{57539BF7-67E7-4A34-A161-F6A30F8015C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopEase.Infrastructure", "ShopEase.Infrastructure\ShopEase.Infrastructure.csproj", "{449599B7-BE72-4234-8343-76B93683363A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopEase.Domain", "ShopEase.Domain\ShopEase.Domain.csproj", "{FF4AA6B5-8501-47A6-A88B-982EE4E06E4D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5AE3048E-CF4D-4F59-8F38-442840499BD7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopEase.WebApi", "ShopEase.WebApi\ShopEase.WebApi.csproj", "{75245560-680A-45EE-8EE6-2F566880AC9B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopEase.Persistence", "ShopEase.Persistence\ShopEase.Persistence.csproj", "{F746BAAD-8AA1-4F59-8826-442622577986}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopEase.Presentation", "ShopEase.Presentation\ShopEase.Presentation.csproj", "{0B6AA368-751E-4940-8692-489132D624C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopEase.Presentation", "ShopEase.Presentation\ShopEase.Presentation.csproj", "{0B6AA368-751E-4940-8692-489132D624C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,14 +48,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{57539BF7-67E7-4A34-A161-F6A30F8015C4} = {68888035-9FD5-4473-A8A1-92EAA7919B4E}
-		{449599B7-BE72-4234-8343-76B93683363A} = {68888035-9FD5-4473-A8A1-92EAA7919B4E}
-		{FF4AA6B5-8501-47A6-A88B-982EE4E06E4D} = {68888035-9FD5-4473-A8A1-92EAA7919B4E}
-		{75245560-680A-45EE-8EE6-2F566880AC9B} = {68888035-9FD5-4473-A8A1-92EAA7919B4E}
-		{F746BAAD-8AA1-4F59-8826-442622577986} = {68888035-9FD5-4473-A8A1-92EAA7919B4E}
-		{0B6AA368-751E-4940-8692-489132D624C0} = {68888035-9FD5-4473-A8A1-92EAA7919B4E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E876D75-A078-4333-B3A4-A90809B8EFC7}
